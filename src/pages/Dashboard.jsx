@@ -1,11 +1,12 @@
 import React from 'react'
-import AuthGuard from '../services/AuthGuard'
 
 function Dashboard() {
   return (
-    <AuthGuard>
+    <>
       <h1>Dashboard</h1>
-    </AuthGuard>
+      <p>Username:</p>
+      <button>Logout</button>
+    </>
   )
 }
 

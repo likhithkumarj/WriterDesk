@@ -7,7 +7,7 @@ function Login() {
     <>
     <LoginForm/>
     <button onClick={signInWithGoogle} >Login with Google</button>
-    <div>Create Acc. <a href='/signin'>Sign In</a></div>
+    <div>I have an Acc. <a href='/signin'>Sign In</a></div>
     </>
   )
 }
