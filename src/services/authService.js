@@ -22,6 +22,17 @@ export async function signUp(email, password) {
     alert("Check your email for confirmation");
   }
 }
+  
+
+export async function signOut() {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    alert(error.message);
+  } else {
+    window.location.href = "/login";
+  }
+}
 
 
 export async function signIn(email, password) {
@@ -33,7 +44,6 @@ export async function signIn(email, password) {
   if (error) alert(error.message);
   else window.location.href = "/dashboard";
 }
-
 
 
 export const getCurrentUser = async () => {
