@@ -14,11 +14,12 @@ import Dashboard from './pages/Dashboard'
 import supabase from './libs/supabaseClient'
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from './routes/PublicRoute'
+import DashboardLayout from './layouts/DashboardLayout'
 
 function App() {
-  supabase.auth.onAuthStateChange((_event, session) => {
-    console.log("Auth changed:", session);
-  });
+  // supabase.auth.onAuthStateChange((_event, session) => {
+  //   console.log("Auth changed:", session);
+  // });
   return (
     <LoadingProvider>
     <Routes>
@@ -28,7 +29,9 @@ function App() {
       
       <Route path='/project' element={<ProtectedRoute><Projects /></ProtectedRoute>} />
       <Route path='/script' element={<ProtectedRoute><Scripts /></ProtectedRoute>} />
-      <Route path='/dashboard' element={  <ProtectedRoute><Dashboard /></ProtectedRoute> } />
+      <Route element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      </Route>
 
       {/* 404 Page */}
       <Route path="/*" element={<NotFound />} />
