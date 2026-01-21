@@ -1,8 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import { Route, Routes } from 'react-router-dom'
-import viteLogo from '/vite.svg'
-import './App.css'
 import { LoadingProvider } from "./context/LoadingContext";
 import LandingPage from './pages/LandingPage'
 import Login from './pages/Login'
@@ -23,7 +19,7 @@ function App() {
   return (
     <LoadingProvider>
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/signin" element={<PublicRoute><Signin /></PublicRoute>} />
       

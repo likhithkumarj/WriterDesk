@@ -1,0 +1,9 @@
+.header{
+    width: calc(100vw - 15em);
+    background: #000;
+    height: 3em;
+    padding: 5px;
+    border-bottom: solid 0.1px var(--accent-color);
+    display: flex;
+    align-items: center;
+}
