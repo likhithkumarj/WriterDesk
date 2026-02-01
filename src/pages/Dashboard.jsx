@@ -1,20 +1,20 @@
-import React from 'react'
-import { signOut } from '../services/authService'
+import React, { useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 function Dashboard() {
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    await signOut();
-  }
-
   return (
-    <>
-      <h1>Dashboard</h1>
-      <p>Username:</p>
-      <button onClick={handleSubmit}>Logout</button>
-    </>
-  )
+    <div className="dashboradMain">
+      <div className="tab-container">
+        <NavLink to="ideas" className="tab">
+          Ideas
+        </NavLink>
+        <NavLink to="posts" className="tab">
+          Posts
+        </NavLink>
+      </div>
+      <Outlet />
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

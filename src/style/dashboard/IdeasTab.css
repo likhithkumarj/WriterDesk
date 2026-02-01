@@ -1,0 +1,154 @@
+.ideas_projectContent {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sort_selector {
+    display: flex;
+    gap: 10px;
+}
+
+.sort_selector button {
+    padding: 7px 14px;
+    border-radius: 999px;
+
+    border: 1px solid var(--border-soft);
+    background: var(--bg-item);
+
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sort_selector button:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+}
+
+.sort_selector button.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.IdeaProjContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.IdeaProjCard {
+    background: var(--bg-item);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+
+    overflow: visible;
+    /* ✅ FIX dropdown clipping */
+    position: relative;
+}
+
+.IdeaProjCard:hover {
+    background: var(--bg-hover);
+    transform: translateY(-3px);
+}
+
+.cardImg {
+    height: 130px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+
+    background: #f97316;
+
+    opacity: 0.85;
+}
+
+.cardBottom {
+    padding: 12px 14px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.optionsWrapper {
+    position: relative;
+    /* z-index: 50; */
+}
+
+.optionsBtn {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+
+    padding: 6px;
+    border-radius: var(--radius-md);
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.optionsBtn:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+}
+
+.optionsMenu {
+    position: absolute;
+    top: 38px;
+    right: 0;
+
+    min-width: 150px;
+    padding: 6px;
+
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.optionsMenu button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 10px;
+    border: none;
+    border-radius: var(--radius-md);
+
+    background: transparent;
+    font-size: 13px;
+    color: var(--text-main);
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.optionsMenu button:hover {
+    background: var(--bg-hover);
+}
+
+.optionsMenu button:last-child {
+    color: #ef4444;
+}
+
+.optionsMenu button:last-child:hover {
+    background: rgba(239, 68, 68, 0.12);
+}

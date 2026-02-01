@@ -1,9 +1,134 @@
-.header{
-    width: calc(100vw - 15em);
-    background: #000;
-    height: 3em;
-    padding: 5px;
-    border-bottom: solid 0.1px var(--accent-color);
+.hearderContent {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+  
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-soft);
+  
+    background: var(--bg-sidebar);
+    
+    width: calc(100vw - var(--sidebar-width));
+  }
+  
+  /* Page Title */
+  .pageRouteName {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+  
+  /* Button Container */
+  .btncontainer {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Shared Button Style */
+  .btncontainer button {
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+  
+    font-size: 13px;
+    font-weight: 500;
+  
+    border: 1px solid var(--border-soft);
+    background: var(--bg-item);
+    color: var(--text-main);
+  
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  /* Hover */
+  .btncontainer button:hover {
+    background: var(--bg-hover);
+  }
+
+
+  /* ===========================
+   MODAL OVERLAY (Background Blur)
+=========================== */
+.ReactModal__Overlay {
+  background: rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* ===========================
+   MODAL BOX
+=========================== */
+.ReactModal__Content {
+  width: 420px;
+  max-width: 90%;
+
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+
+  padding: 22px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+  inset: unset !important; /* removes default positioning */
+}
+
+/* Title */
+.ReactModal__Content h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--text-main);
+}
+
+/* ===========================
+   INPUT FIELD
+=========================== */
+.ReactModal__Content input {
+  width: 100%;
+  padding: 10px 12px;
+
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+
+  background: var(--bg-item);
+  color: var(--text-main);
+
+  font-size: 14px;
+  outline: none;
+
+  transition: border 0.2s ease;
+}
+
+.ReactModal__Content input:focus {
+  border-color: var(--accent);
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+.ReactModal__Content button {
+  margin-top: 14px;
+  width: 100%;
+
+  padding: 10px;
+  border-radius: var(--radius-md);
+
+  border: none;
+  background: var(--accent);
+  color: white;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.ReactModal__Content button:hover {
+  opacity: 0.9;
+}
+
+  
