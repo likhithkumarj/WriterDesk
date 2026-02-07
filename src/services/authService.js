@@ -1,10 +1,20 @@
 import supabase from "../libs/supabaseClient";
 
+export async function signIn(email, password) {
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) alert(error.message);
+  else window.location.href = "/dashboard/ideas";
+}
+
 export const signInWithGoogle = async () => {
   await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: window.location.origin + "/dashboard"
+      redirectTo: window.location.origin + "/dashboard/ideas"
     }
   });
 };
@@ -35,15 +45,6 @@ export async function signOut() {
 }
 
 
-export async function signIn(email, password) {
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
-
-  if (error) alert(error.message);
-  else window.location.href = "/dashboard";
-}
 
 
 export const getCurrentUser = async () => {

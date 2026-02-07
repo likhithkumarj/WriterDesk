@@ -8,6 +8,9 @@ function Dashboard() {
         <NavLink to="ideas" className="tab">
           Ideas
         </NavLink>
+        <NavLink to="projects" className="tab">
+          Projects
+        </NavLink>
         <NavLink to="posts" className="tab">
           Posts
         </NavLink>

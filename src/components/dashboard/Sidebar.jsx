@@ -1,37 +1,69 @@
 import React from "react";
+// import * as React from 'react';
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import "../../style/dashboard/Sidebar.css";
-import { LayoutDashboard, Telescope, MessageCircle, CalendarCheck2, Bell, Info, Settings, ChevronUp } from "lucide-react";
+import {
+  LayoutDashboard,
+  Telescope,
+  MessageCircle,
+  CalendarCheck2,
+  Bell,
+  Info,
+  Settings,
+  ChevronUp,
+  LogOut,
+} from "lucide-react";
+import { signOut } from "../../services/authService";
+
+
+const handleClick = (e) => {
+  e.stopPropagation();
+  setAnchorEl(e.currentTarget);
+};
+
+const handleClose = () => {
+  setAnchorEl(null);
+};
 
 function Sidebar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-    const navItems = [
-        {
-          name: "Dashboard",
-          href: "/dashboard",
-          icon: <LayoutDashboard size={16} />,
-        },
-        {
-          name: "Community",
-          href: "/community",
-          icon: <Telescope size={16} />,
-        },
-        {
-          name: "Message",
-          href: "/message",
-          icon: <MessageCircle size={16} />,
-        },
-        {
-          name: "Schedule",
-          href: "/schedule",
-          icon: <CalendarCheck2 size={16} />,
-        },
-        {
-          name: "Notification",
-          href: "/notification",
-          icon: <Bell size={16} />,
-        },
-      ];
-      
+  const navItems = [
+    {
+      name: "Dashboard",
+      href: "/dashboard",
+      icon: <LayoutDashboard size={16} />,
+    },
+    {
+      name: "Community",
+      href: "/community",
+      icon: <Telescope size={16} />,
+    },
+    {
+      name: "Message",
+      href: "/message",
+      icon: <MessageCircle size={16} />,
+    },
+    {
+      name: "Schedule",
+      href: "/schedule",
+      icon: <CalendarCheck2 size={16} />,
+    },
+    {
+      name: "Notification",
+      href: "/notification",
+      icon: <Bell size={16} />,
+    },
+  ];
 
   return (
     <div className="fullsidebar">
@@ -68,11 +100,15 @@ function Sidebar() {
         </div>
         <div className="softwareOption">
           <a href="/help" className="helpBtn">
-            <div className="helpIcon"><Info size={16} /></div>
+            <div className="helpIcon">
+              <Info size={16} />
+            </div>
             <div className="helpTitle">Help</div>
           </a>
           <a href="/setting" className="settingBtn">
-            <div className="settingIcon"><Settings size={16} /></div>
+            <div className="settingIcon">
+              <Settings size={16} />
+            </div>
             <div className="settingTitle">Setting</div>
           </a>
           <div className="profile">
@@ -81,7 +117,56 @@ function Sidebar() {
               <div className="username">Saul</div>
               <div className="subscriptionName">Free plan</div>
             </div>
-            <div className="moreOption"><ChevronUp size={16} /></div>
+            <>
+              <Button
+                className="moreOption"
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+              >
+                <ChevronUp size={16} />
+              </Button>
+
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
+                PaperProps={{
+                  sx: {
+                    backgroundColor: "#111",
+                    color: "#fff",
+                  },
+                }}
+              >
+                <MenuItem
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    await signOut();
+                    handleClose();
+                  }}
+                  sx={{
+                    gap: 1,
+                    "&:hover": {
+                      backgroundColor: "#1f1f1f",
+                    },
+                  }}
+                >
+                  <LogOut size={16} />
+                  Logout
+                </MenuItem>
+              </Menu>
+            </>
           </div>
         </div>
       </div>

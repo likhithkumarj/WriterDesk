@@ -16,7 +16,7 @@ export default function PublicRoute({ children }) {
   if (loading) return <Loader />;
 
   if (session) {
-    window.location.replace("/dashboard");
+    window.location.replace("/dashboard/ideas");
     return null;
   }
 

@@ -9,9 +9,12 @@ import supabase from './libs/supabaseClient'
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from './routes/PublicRoute'
 import DashboardLayout from './layouts/DashboardLayout'
-import Ideas_ProjectsTab from './pages/Ideas_ProjectsTab';
+import IdeasTab from './pages/IdeasTab';
 import PostsTab from './pages/PostsTab';
 import NewProject from './pages/NewProject';
+import Onboarding from './pages/Onboarding';
+import OnboardingGate from './routes/OnboardingGate';
+import ProjectTab from './pages/ProjectsTab';
 
 
 function App() {
@@ -24,10 +27,12 @@ function App() {
       <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/signin" element={<PublicRoute><Signin /></PublicRoute>} />
+      <Route path="/onboarding" element={<Onboarding />} />
 
-      <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+      <Route path="/dashboard" element={<ProtectedRoute><OnboardingGate><DashboardLayout /></OnboardingGate></ProtectedRoute>}>
         <Route path="posts" element={<ProtectedRoute><PostsTab /></ProtectedRoute>} />
-        <Route path="ideas" element={<ProtectedRoute><Ideas_ProjectsTab /></ProtectedRoute>} />
+        <Route path="Projects" element={<ProtectedRoute><ProjectTab /></ProtectedRoute>} />
+        <Route path="ideas" element={<ProtectedRoute><IdeasTab /></ProtectedRoute>} />
       </Route>
 
       <Route path='/new-project' element={<ProtectedRoute> <NewProject/> </ProtectedRoute>}/>

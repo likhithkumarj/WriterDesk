@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
-export default function PostsTab() {
+export default function ProjectTab() {
   const [sort, setSort] = useState("recent");
-  const [posts, setPosts] = useState([]);
+  const [Project, setProject] = useState([]);
 
   useEffect(() => {
-    async function fetchPosts() {
-      const res = await fetch(`/api/posts?sort=${sort}`);
+    async function fetchProjects() {
+      const res = await fetch(`/api/Project?sort=${sort}`);
       const data = await res.json();
-      setPosts(data);
+      setProject(data);
     }
 
-    fetchPosts();
+    fetchProjects();
   }, [sort]);
 
   return (
@@ -21,7 +21,7 @@ export default function PostsTab() {
       <button onClick={() => setSort("popular")}>Popular</button>
       <button onClick={() => setSort("oldest")}>Oldest</button>
 
-      {posts.map((p) => (
+      {Project.map((p) => (
         <div key={p.id}>{p.title}</div>
       ))}
     </div>
