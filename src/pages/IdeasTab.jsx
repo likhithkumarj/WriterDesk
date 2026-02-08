@@ -2,21 +2,12 @@ import React, { useState } from "react";
 import '../style/dashboard/IdeasTab.css'
 import IdeasCard from "../components/dashboard/IdeasCard";
 import Button from '@mui/material/Button';
+import { useIdeas } from "../context/IdeaContext";
 
 
-const cardsData = [
-  {
-    id: 1,
-    title: "Mountain View",
-    image: "https://picsum.photos/300/200?1",
-  },
-  {
-    id: 2,
-    title: "Beach Sunset",
-    image: "https://picsum.photos/300/200?2",
-  },
-];
 const IdeasTab = () => {
+
+  const { ideas } = useIdeas();
 
   const [activeId, setActiveId] = useState(null);
 
@@ -37,7 +28,7 @@ const IdeasTab = () => {
       </div>
 
       <div className="IdeaProjContainer">
-        {cardsData.map((card) => (
+        {ideas.map((card) => (
         <IdeasCard
           key={card.id}
           data={card}

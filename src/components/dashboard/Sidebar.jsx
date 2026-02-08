@@ -1,5 +1,4 @@
 import React from "react";
-// import * as React from 'react';
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -16,18 +15,14 @@ import {
   LogOut,
 } from "lucide-react";
 import { signOut } from "../../services/authService";
+import { useUser } from "../../context/UserContext";
 
-
-const handleClick = (e) => {
-  e.stopPropagation();
-  setAnchorEl(e.currentTarget);
-};
-
-const handleClose = () => {
-  setAnchorEl(null);
-};
 
 function Sidebar() {
+
+  const { user } = useUser();
+  if (!user) return null;
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -114,8 +109,8 @@ function Sidebar() {
           <div className="profile">
             <div className="dp"></div>
             <div className="userinfo">
-              <div className="username">Saul</div>
-              <div className="subscriptionName">Free plan</div>
+              <div className="username">{user.username}</div>
+              <div className="bio">{user.bio}</div>
             </div>
             <>
               <Button

@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import supabase from "../libs/supabaseClient";
-import Loader from "../components/Loader";
+import { useLoading } from "../context/LoadingContext";
 
 export default function AuthGuard({ children }) {
-  const [loading, setLoading] = useState(true);
+  const { setLoading } = useLoading();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const checkSession = async () => {
+      setLoading(true);
+
+      const { data: { session } } = await supabase.auth.getSession();
+
       if (!session) {
         window.location.href = "/login";
       } else {
         setLoading(false);
       }
-    });
+    };
+
+    checkSession();
   }, []);
 
-  if (loading) return <Loader/>; // or spinner
   return children;
 }

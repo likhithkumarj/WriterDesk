@@ -3,18 +3,26 @@ import "../../style/dashboard/Header.css";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { useState } from "react";
+import { createIdea } from "../../services/ideaService";
+import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
+
 function DashboardHeader() {
+  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [title, setTitle] = useState("");
 
-  const handleSubmit = () => {
-    alert("Idea Created: " + title);
-    setTitle("");
-    setModalOpen(false);
+  const handleCreate = async () => {
+    try {
+      const idea = await createIdea(title);
+      navigate(`/newidea/${idea.id}`);
+    } catch (err) {
+      alert(err.message);
+    }
   };
+
 
   return (
     <>
@@ -41,7 +49,7 @@ function DashboardHeader() {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <button onClick={handleSubmit}>Write</button>
+        <button onClick={handleCreate}>Start Writting</button>
       </Modal>
     </>
   );

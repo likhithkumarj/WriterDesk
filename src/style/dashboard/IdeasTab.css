@@ -38,7 +38,7 @@
 
 .IdeaProjContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 18px;
 }
 
@@ -46,10 +46,10 @@
     background: var(--bg-item);
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-
+    
     cursor: pointer;
     transition: transform 0.2s ease, background 0.2s ease;
-
+    
     overflow: visible;
     /* ✅ FIX dropdown clipping */
     position: relative;
@@ -60,13 +60,14 @@
     transform: translateY(-3px);
 }
 
-.cardImg {
+.cardContent {
+    border-top: 1px solid var(--border-soft);
     height: 130px;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-
-    background: #f97316;
-
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     opacity: 0.85;
+    padding: 6px 14px;
+    z-index: -1 !important;
+
 }
 
 .cardBottom {
@@ -78,14 +79,14 @@
 }
 
 .cardTitle {
-    font-size: 14px;
+    font-size: 25px;
     font-weight: 600;
     color: var(--text-main);
 }
 
 .optionsWrapper {
     position: relative;
-    /* z-index: 50; */
+    z-index: 1;
 }
 
 .optionsBtn {

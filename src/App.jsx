@@ -15,6 +15,11 @@ import NewProject from './pages/NewProject';
 import Onboarding from './pages/Onboarding';
 import OnboardingGate from './routes/OnboardingGate';
 import ProjectTab from './pages/ProjectsTab';
+import { UserProvider } from './context/UserContext';
+import IdeaEditor from './pages/IdeaEditor';
+import { IdeasProvider } from './context/IdeaContext';
+
+
 
 
 function App() {
@@ -23,23 +28,30 @@ function App() {
   // });
   return (
     <LoadingProvider>
+      <UserProvider><IdeasProvider>
     <Routes>
       <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/signin" element={<PublicRoute><Signin /></PublicRoute>} />
       <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/dashboard" 
+            element={<ProtectedRoute>
+            <OnboardingGate><DashboardLayout /></OnboardingGate>
+            </ProtectedRoute>}>
+          <Route path="posts" element={<ProtectedRoute><PostsTab /></ProtectedRoute>} />
+          <Route path="Projects" element={<ProtectedRoute><ProjectTab /></ProtectedRoute>} />
+          <Route path="ideas" element={<ProtectedRoute> <IdeasTab /></ProtectedRoute>} />
+        </Route>
 
-      <Route path="/dashboard" element={<ProtectedRoute><OnboardingGate><DashboardLayout /></OnboardingGate></ProtectedRoute>}>
-        <Route path="posts" element={<ProtectedRoute><PostsTab /></ProtectedRoute>} />
-        <Route path="Projects" element={<ProtectedRoute><ProjectTab /></ProtectedRoute>} />
-        <Route path="ideas" element={<ProtectedRoute><IdeasTab /></ProtectedRoute>} />
-      </Route>
 
+      <Route path='/newidea/:id' element={<ProtectedRoute> <IdeaEditor/> </ProtectedRoute>}/>
       <Route path='/new-project' element={<ProtectedRoute> <NewProject/> </ProtectedRoute>}/>
       {/* 404 Page */}
       <Route path="/*" element={<NotFound />} />
     </Routes>
+      </IdeasProvider></UserProvider>
     </LoadingProvider>
+      
   );
 }
 
